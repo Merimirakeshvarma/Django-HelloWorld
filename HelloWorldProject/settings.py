@@ -11,18 +11,15 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
-
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
-
 import os
 
-STATIC_URL = '/static/'
-STATIC_ROOT = '/home/Merimirakesh/Django-HelloWorld/static'
+# Ensure BASE_DIR is properly set
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'hello/static')
-]
+# Static files setup
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")  # Dynamically set static root
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'hello/static')]
 
 
 # Quick-start development settings - unsuitable for production
@@ -34,7 +31,7 @@ SECRET_KEY = 'django-insecure-6e62a^fio9d6l$yv&hnigyl=dzlm6j47)qnvsgh0f(fve&i&ga
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['your-username.pythonanywhere.com', '127.0.0.1']
+ALLOWED_HOSTS = ['merimirakesh.pythonanywhere.com', '127.0.0.1']
 
 
 # Application definition
@@ -86,10 +83,9 @@ WSGI_APPLICATION = 'HelloWorldProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': str(BASE_DIR / 'db.sqlite3'),  # Ensure it's a string
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
